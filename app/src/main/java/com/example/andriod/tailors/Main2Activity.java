@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
@@ -39,7 +38,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     public void selectClothing(View view) {
-        ImageButton button = (ImageButton) view;
+        Button button = (Button) view;
         startActivity(new Intent(getApplicationContext(), Main3Activity.class));
     }
 
