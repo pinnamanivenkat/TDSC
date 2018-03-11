@@ -32,8 +32,7 @@
             android:inputType="textPersonName"
             android:textAllCaps="true"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:typeface="serif" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tpno"
