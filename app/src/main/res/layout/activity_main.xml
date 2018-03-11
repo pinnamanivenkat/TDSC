@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.andriod.tailors.MainActivity">
+
+    <ImageView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:src="@drawable/t3" />
+
+    <Button
+        android:id="@+id/lgs"
+        android:layout_width="165dp"
+        android:layout_height="64dp"
+        android:layout_below="@+id/t1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:layout_marginTop="36dp"
+        android:background="#F48FB1"
+        android:fontFamily="monospace"
+        android:onClick="submitOrder"
+        android:text="LETS GET STARTED"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF "
+        android:textSize="18sp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="361dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>
