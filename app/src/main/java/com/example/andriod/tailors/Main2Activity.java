@@ -37,6 +37,16 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        System.exit(0);
+    }
+
     public void selectClothing(View view) {
         Button button = (Button) view;
         startActivity(new Intent(getApplicationContext(), Main3Activity.class));

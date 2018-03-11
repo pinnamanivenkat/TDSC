@@ -35,6 +35,14 @@ public class Main7Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Main7Activity.this, Main2Activity.class));
+        finish();
+
+    }
+
     public void chooseMat(View view) {
         Button button = (Button) view;
         startActivity(new Intent(getApplicationContext(), Main3Activity.class));
