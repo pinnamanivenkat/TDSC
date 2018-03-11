@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
-            android:text="PICKUP TIME HH:MM:SS"
+            android:text="PICKUP TIME HH:MM (24 HRS FORMAT) "
             android:textAlignment="viewStart"
             android:textAllCaps="true"
             android:textSize="16sp"
