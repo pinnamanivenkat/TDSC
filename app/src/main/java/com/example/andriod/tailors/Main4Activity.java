@@ -12,8 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class Main4Activity extends AppCompatActivity {
@@ -53,11 +57,15 @@ public class Main4Activity extends AppCompatActivity {
         peaddress = findViewById(R.id.eaddress);
         pepin = findViewById(R.id.epin);
 
-        pedate = findViewById(R.id.epdate);
-        petime = findViewById(R.id.eptime);
+        final DatePicker pedate = findViewById(R.id.epdate);
+        Calendar calendar = Calendar.getInstance();
+
+        final TimePicker petime = findViewById(R.id.eptime);
+        petime.setIs24HourView(true);
 
 
         pbplaceorder = findViewById(R.id.bplaceorder);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
         pbplaceorder.setOnClickListener(
@@ -65,39 +73,58 @@ public class Main4Activity extends AppCompatActivity {
 
                     @Override
                     public void onClick(View v) {
-                        // TODO Auto-generated method stub
-                        dialog = new ProgressDialog(Main4Activity.this);
-                        dialog.setMax(1000);
-                        dialog.setMessage("Please Wait...");
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        dialog.show();
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(200);
+                        if (pename.getText().toString().trim().length() == 0) {
+                            pename.setError("ADD NAME");
+                            Toast.makeText(getApplicationContext(), "ENTER NAME", Toast.LENGTH_SHORT).show();
+                        } else if (pepno.getText().toString().trim().length() != 10) {
+                            pepno.setError("ADD VALID PHONE NUMBER");
+                            Toast.makeText(getApplicationContext(), "INVALID PHONE NUMBER", Toast.LENGTH_SHORT).show();
+                        } else if (peemail.getText().toString().trim().length() == 0 || (!peemail.getText().toString().trim().matches(emailPattern))) {
+                            peemail.setError("ADD  VALID EMAIL");
+                            Toast.makeText(getApplicationContext(), "INVALID EMAIL ADDRESS", Toast.LENGTH_SHORT).show();
+                        } else if (peaddress.getText().toString().trim().length() == 0) {
+                            peaddress.setError("ADD ADDRESS");
+                            Toast.makeText(getApplicationContext(), "ENTER ADDRESS", Toast.LENGTH_SHORT).show();
+                        } else if (pepin.getText().toString().trim().length() != 6) {
+                            pepin.setError("ADD VALID PINCODE");
+                            Toast.makeText(getApplicationContext(), "INALID PINCODE", Toast.LENGTH_SHORT).show();
+                        } else {
 
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                            // TODO Auto-generated method stub
+                            dialog = new ProgressDialog(Main4Activity.this);
+                            dialog.setMax(1000);
+                            dialog.setMessage("Please Wait...");
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.show();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Thread.sleep(200);
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
-
-                            }
-                        }).start();
-                        String NAME, PHONE_NO, EMAIL, ADDRESS, PINCODE, PICKUPTIME, PICKUPDATE;
-                        NAME = pename.getText().toString();
-                        PHONE_NO = pepno.getText().toString();
-                        EMAIL = peemail.getText().toString();
-                        ADDRESS = peaddress.getText().toString();
-                        PINCODE = pepin.getText().toString();
-                        PICKUPDATE = pedate.getText().toString();
-                        PICKUPTIME = petime.getText().toString();
-                        // Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
-                        UserDetailsTable userDetail = new UserDetailsTable(NAME, PHONE_NO, EMAIL, ADDRESS, PINCODE, PICKUPDATE, PICKUPTIME);
-                        new AsyncCreateUser().execute(userDetail);
+                            }).start();
+                            String NAME, PHONE_NO, EMAIL, ADDRESS, PINCODE, PICKUPTIME, PICKUPDATE;
+                            NAME = pename.getText().toString();
+                            PHONE_NO = pepno.getText().toString();
+                            EMAIL = peemail.getText().toString();
+                            ADDRESS = peaddress.getText().toString();
+                            PINCODE = pepin.getText().toString();
+                            PICKUPDATE = "" + pedate.getYear() + "/" + pedate.getMonth() + "/" + pedate.getDayOfMonth();
+                            PICKUPTIME = "" + petime.getCurrentHour() + ":" + petime.getCurrentMinute();
+                            // Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
+                            UserDetailsTable userDetail = new UserDetailsTable(NAME, PHONE_NO, EMAIL, ADDRESS, PINCODE, PICKUPDATE, PICKUPTIME);
+                            new AsyncCreateUser().execute(userDetail);
+                        }
 
                     }
                 });
     }
+
 
     protected class AsyncCreateUser extends
             AsyncTask<UserDetailsTable, Void, Void> {
@@ -138,7 +165,6 @@ public class Main4Activity extends AppCompatActivity {
 
             startActivity(new Intent(getApplicationContext(), Main6Activity.class));
         }
-
 
     }
 
