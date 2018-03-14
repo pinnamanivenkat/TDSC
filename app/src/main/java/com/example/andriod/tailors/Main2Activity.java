@@ -49,7 +49,7 @@ public class Main2Activity extends AppCompatActivity {
 
     public void selectClothing(View view) {
         Button button = (Button) view;
-        startActivity(new Intent(getApplicationContext(), Main3Activity.class));
+        startActivity(new Intent(getApplicationContext(), Main4Activity.class));
     }
 
     public void menu(View view) {

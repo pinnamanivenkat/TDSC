@@ -19,7 +19,7 @@
         android:text="KURTI"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#F48FB1"
+        android:textColor="#311B92"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="serif" />
@@ -40,26 +40,26 @@
         android:text="BLOUSE"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#F48FB1"
+        android:textColor="#311B92"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/checkBox4"
-        android:layout_alignRight="@+id/checkBox4"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/checkBox4"
+        android:layout_alignStart="@+id/checkBox4"
         android:layout_below="@+id/checkBox4"
-        android:layout_marginTop="120dp"
-        android:background="#F48FB1"
+        android:layout_marginTop="134dp"
+        android:background="#4A148C"
         android:fontFamily="monospace"
         android:onClick="perDetails"
         android:text="Proceed"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textStyle="bold"
         android:typeface="serif" />
 </RelativeLayout>

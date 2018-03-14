@@ -25,6 +25,7 @@ public class Main4Activity extends AppCompatActivity {
 
     EditText pename, pepno, peemail, peaddress, pepin, petime, pedate;
     Button pbplaceorder;
+    long now = System.currentTimeMillis() - 1000;
 
     private ProgressDialog dialog; // this = YourActivity
 
@@ -62,10 +63,17 @@ public class Main4Activity extends AppCompatActivity {
 
         final TimePicker petime = findViewById(R.id.eptime);
         petime.setIs24HourView(true);
+        pedate.setMinDate(now + (1000 * 60 * 60 * 24));
+        pedate.setMaxDate(now + (1000 * 60 * 60 * 24 * 7));
+
+
+
+
+
 
 
         pbplaceorder = findViewById(R.id.bplaceorder);
-        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]{2,3}";
 
 
         pbplaceorder.setOnClickListener(
@@ -88,6 +96,10 @@ public class Main4Activity extends AppCompatActivity {
                         } else if (pepin.getText().toString().trim().length() != 6) {
                             pepin.setError("ADD VALID PINCODE");
                             Toast.makeText(getApplicationContext(), "INALID PINCODE", Toast.LENGTH_SHORT).show();
+                        } else if (petime.getCurrentHour() < 10 || petime.getCurrentHour() > 19) {
+                            pepno.setError("");
+                            Toast.makeText(getApplicationContext(), "CHOOSE TIME BETWEEN 10AM AND 7PM", Toast.LENGTH_SHORT).show();
+
                         } else {
 
                             // TODO Auto-generated method stub

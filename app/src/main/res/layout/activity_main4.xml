@@ -123,6 +123,7 @@
             android:id="@+id/tpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:fontFamily="monospace"
             android:text="PICKUP DATE"
             android:textAllCaps="true"
@@ -133,12 +134,15 @@
         <DatePicker
             android:id="@+id/epdate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:headerBackground="#CE93D8" />
 
         <TextView
             android:id="@+id/tptime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:fontFamily="monospace"
             android:text="PICKUP TIME"
             android:textAlignment="viewStart"
@@ -148,23 +152,27 @@
 
         <TimePicker
             android:id="@+id/eptime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#CE93D8"
+            android:timePickerMode="spinner" />
+
         <Button
             android:id="@+id/bplaceorder"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_margin="120dp"
             android:layout_marginEnd="120dp"
-            android:layout_marginRight="120dp"
-            android:background="#F48FB1"
+            android:background="#4A148C"
             android:fontFamily="monospace"
             android:text="PLACE ORDER"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:typeface="serif" />
 

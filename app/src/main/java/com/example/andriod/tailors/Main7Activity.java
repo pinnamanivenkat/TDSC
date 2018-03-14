@@ -45,6 +45,6 @@ public class Main7Activity extends AppCompatActivity {
 
     public void chooseMat(View view) {
         Button button = (Button) view;
-        startActivity(new Intent(getApplicationContext(), Main3Activity.class));
+        startActivity(new Intent(getApplicationContext(), Main4Activity.class));
     }
 }

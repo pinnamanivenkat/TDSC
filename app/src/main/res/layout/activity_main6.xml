@@ -13,15 +13,15 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView3"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="42dp"
         android:fontFamily="monospace"
         android:text="Thank YOU"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#2E7D32"
-        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
@@ -36,8 +36,8 @@
         android:text="Our employee will come and pickup the material"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
-        android:textColor="#2E7D32"
-        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
@@ -55,7 +55,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#E53935"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
@@ -74,24 +74,26 @@
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="#E53935"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView6"
         android:layout_alignStart="@+id/textView6"
         android:layout_below="@+id/textView6"
-        android:layout_marginTop="51dp"
-        android:background="#F48FB1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="#4A148C"
         android:fontFamily="monospace"
         android:onClick="homePage"
         android:text="CONTINUE SHOPPING"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="13sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
