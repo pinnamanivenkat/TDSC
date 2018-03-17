@@ -1,4 +1,4 @@
-package com.example.andriod.tailors;
+package com.wise.harsh;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.andriod.tailors", appContext.getPackageName());
+        assertEquals("com.wise.harsh", appContext.getPackageName());
     }
 }

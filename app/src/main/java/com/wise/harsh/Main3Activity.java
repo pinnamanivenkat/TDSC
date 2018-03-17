@@ -1,4 +1,4 @@
-package com.example.andriod.tailors;
+package com.wise.harsh;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class Main7Activity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity {
+
 
     public static boolean isNetworkStatusAvialable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -24,26 +25,26 @@ public class Main7Activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (!isNetworkStatusAvialable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
-
-        } else {
-            setContentView(R.layout.activity_main7);
-
-        }
-    }
-
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Main7Activity.this, Main2Activity.class));
+        startActivity(new Intent(Main3Activity.this, Main2Activity.class));
         finish();
 
     }
 
-    public void chooseMat(View view) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (!isNetworkStatusAvialable(getApplicationContext())) {
+            Toast.makeText(getApplicationContext(), "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
+            setContentView(R.layout.activity_main3);
+        } else {
+            setContentView(R.layout.activity_main3);
+
+        }
+    }
+
+    public void perDetails(View view) {
         Button button = (Button) view;
         startActivity(new Intent(getApplicationContext(), Main4Activity.class));
     }

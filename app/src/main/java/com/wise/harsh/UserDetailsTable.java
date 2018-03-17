@@ -1,4 +1,4 @@
-package com.example.andriod.tailors;
+package com.wise.harsh;
 
 public class UserDetailsTable {
     String NAME, PHONE_NO, EMAIL, ADDRESS, PINCODE, PICKUPDATE, PICKUPTIME;

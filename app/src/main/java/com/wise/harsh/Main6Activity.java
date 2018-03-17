@@ -1,4 +1,4 @@
-package com.example.andriod.tailors;
+package com.wise.harsh;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class Main6Activity extends AppCompatActivity {
 
     public static boolean isNetworkStatusAvialable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -24,23 +24,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        if (isNetworkStatusAvialable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Internet detected", Toast.LENGTH_SHORT).show();
-            setContentView(R.layout.activity_main);
-        } else {
-            Toast.makeText(getApplicationContext(), "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
-
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Main6Activity.this, Main2Activity.class));
+        finish();
 
     }
 
-    public void submitOrder(View v) {
-        Button button = (Button) v;
-        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (!isNetworkStatusAvialable(getApplicationContext())) {
+            Toast.makeText(getApplicationContext(), "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
 
+        } else {
+            setContentView(R.layout.activity_main6);
+
+        }
+    }
+
+    public void homePage(View view) {
+        Button button = (Button) view;
+        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
     }
 }
