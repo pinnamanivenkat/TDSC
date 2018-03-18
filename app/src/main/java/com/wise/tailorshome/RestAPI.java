@@ -1,5 +1,5 @@
 /* JSON API for android appliation */
-package com.wise.harsh;
+package com.wise.tailorshome;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

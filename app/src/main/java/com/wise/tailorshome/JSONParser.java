@@ -1,4 +1,4 @@
-package com.wise.harsh;
+package com.wise.tailorshome;
 
 public class JSONParser {
 

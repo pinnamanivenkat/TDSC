@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wise.harsh.Main4Activity">
+    tools:context="com.wise.tailorshome.Main4Activity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.wise.harsh;
+package com.wise.tailorshome;
 
 import org.junit.Test;
 

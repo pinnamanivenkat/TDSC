@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wise.harsh.Main6Activity">
+    tools:context="com.wise.tailorshome.Main6Activity">
 
     <TextView
         android:id="@+id/textView2"

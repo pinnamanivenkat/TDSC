@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "641951006414",
+    "project_id": "tdsc-copy-copy"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641951006414:android:d2c32045737eacc8",
+        "android_client_info": {
+          "package_name": "com.wise.tailorshome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641951006414-56qbvh887b1jgpnp3sm42lqdtg9bbb03.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "641951006414-bp5c7s63i1v94ktrhcve7pi1g3iolv53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wise.tailorshome",
+            "certificate_hash": "73b9ea14dd29ee9ae0a202d7a9767e3ebc813451"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATTjZz3tJFguFOWK_WJ_KVba1nYifR25s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

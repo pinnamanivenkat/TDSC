@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wise.harsh.Main3Activity">
+    tools:context="com.wise.tailorshome.Main3Activity">
 
     <CheckBox
         android:id="@+id/checkBox4"
