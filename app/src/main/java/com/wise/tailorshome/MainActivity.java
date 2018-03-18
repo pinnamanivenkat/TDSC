@@ -1,20 +1,17 @@
 package com.wise.tailorshome;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,143 +19,124 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private static final int REQ_CODE = 9001;
+    private GoogleApiClient mGoogleApiClient;
+    private static final int RC_SIGN_IN = 7;
+
+    private SignInButton signInButton;
+
     private LinearLayout prof_section;
-    private Button Signout;
-    private SignInButton Signin;
-    private TextView Name, Email;
-    private ImageView g_image;
-    private GoogleApiClient googleApiClient;
 
-    public static boolean isNetworkStatusAvialable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo netInfos = connectivityManager.getActiveNetworkInfo();
-            if (netInfos != null) {
-                return netInfos.isConnected();
-            }
-        }
-        return false;
-    }
+    private static final String TAG = "MainActivity";
+
+    private ProgressDialog progressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        signInButton = findViewById(R.id.signin);
+        prof_section = findViewById(R.id.prof_section);
 
-        if (isNetworkStatusAvialable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Internet detected", Toast.LENGTH_SHORT).show();
-            setContentView(R.layout.activity_main);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
 
+        prof_section.setVisibility(View.GONE);
 
-            prof_section = findViewById(R.id.prof_section);
-            Signout = findViewById(R.id.logout);
-            Signin = findViewById(R.id.signin);
-            Name = findViewById(R.id.name);
-            Email = findViewById(R.id.email);
-            g_image = findViewById(R.id.g_image);
-            Signin.setOnClickListener(this);
-            Signout.setOnClickListener(this);
-            prof_section.setVisibility(View.GONE);
-            GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-            googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
-        } else {
-            Toast.makeText(getApplicationContext(), "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
-        }
-
+        signInButton.setScopes(gso.getScopeArray());
     }
 
     public void submitOrder(View v) {
         Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), Main2Activity.class));
-
     }
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.signin:
-                signin();
-                break;
-            case R.id.logout:
-                signout();
-                break;
-
-        }
-
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 
-
-    private void signin() {
-        Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        startActivityForResult(intent, REQ_CODE);
-        //startActivity(new Intent(getApplicationContext(), Main2Activity.class));
-    }
-
-    private void signout() {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                updateUI(false);
-            }
-        });
-
-    }
-
-    private void handleresult(GoogleSignInResult result) {
-        if (result.isSuccess()) {
-            GoogleSignInAccount account = result.getSignInAccount();
-            String name = account.getDisplayName();
-            String email = account.getEmail();
-            String img_url = account.getPhotoUrl().toString();
-            Name.setText(name);
-            Email.setText(email);
-            Glide.with(this).load(img_url).into(g_image);
-            updateUI(true);
+    private void signIn() {
+        if (Utils.hasActiveInternetConnection(MainActivity.this)) {
+            progressDialog = Utils.showLoadingDialog(MainActivity.this, true);
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
         } else {
-            updateUI(false);
-        }
-
-    }
-
-    private void updateUI(boolean isLogin) {
-        if (isLogin) {
-            prof_section.setVisibility(View.VISIBLE);
-            Signin.setVisibility(View.GONE);
-        } else {
-            prof_section.setVisibility(View.GONE);
-            Signin.setVisibility(View.VISIBLE);
-
+            Toast.makeText(this, "No internet, Please try again", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQ_CODE) {
+        if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-                int statusCode = result.getStatus().getStatusCode();
-                handleresult(result);
+                handleSignInResult(result);
+            } else {
+                if (data.getExtras() != null) {
+                    for (String key : data.getExtras().keySet()) {
+                        Log.i(TAG, "onActivityResult: " + key + " " + data.getExtras().get("googleSignInStatus"));
+                    }
+                }
+                Toast.makeText(this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
             }
         }
 
-           /* GoogleSignInResult result= Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleresult(result);*/
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.cancel();
+        }
+    }
 
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result != null) {
+            if (result.isSuccess()) {
+                GoogleSignInAccount acct = result.getSignInAccount();
+                if (acct != null) {
+                    String personName = acct.getDisplayName();
+                    String photoUrl = null;
+                    if (acct.getPhotoUrl() != null) {
+                        photoUrl = acct.getPhotoUrl().toString();
+                    }
+                    String email = acct.getEmail();
+                    Log.i(TAG, "handleSignInResult: " + personName + " " + email + " " + photoUrl);
+                } else {
+                    updateUI(false);
+                }
+            } else {
+                updateUI(false);
+            }
+        } else {
+            updateUI(false);
+        }
+    }
+
+    private void updateUI(boolean isLogin) {
+        if (isLogin) {
+            prof_section.setVisibility(View.VISIBLE);
+            signInButton.setVisibility(View.GONE);
+        } else {
+            Toast.makeText(this, "Login failed,Please try again", Toast.LENGTH_SHORT).show();
+            prof_section.setVisibility(View.GONE);
+            signInButton.setVisibility(View.VISIBLE);
+        }
     }
 }
