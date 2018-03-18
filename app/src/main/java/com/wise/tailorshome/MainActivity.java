@@ -55,13 +55,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(getApplicationContext(), "Internet detected", Toast.LENGTH_SHORT).show();
             setContentView(R.layout.activity_main);
 
-
-            prof_section = findViewById(R.id.prof_section);
-            Signout = findViewById(R.id.logout);
-            Signin = findViewById(R.id.signin);
-            Name = findViewById(R.id.name);
-            Email = findViewById(R.id.email);
-            g_image = findViewById(R.id.g_image);
+            try {
+                prof_section = findViewById(R.id.prof_section);
+                Signout = findViewById(R.id.logout);
+                Signin = findViewById(R.id.signin);
+                Name = findViewById(R.id.name);
+                Email = findViewById(R.id.email);
+                g_image = findViewById(R.id.g_image);
+            } catch (Exception e) {
+                
+            }
             Signin.setOnClickListener(this);
             Signout.setOnClickListener(this);
             prof_section.setVisibility(View.GONE);
